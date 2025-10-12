@@ -6,6 +6,8 @@ import Cart from './pages/Cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './commponents/Footer/Footer'
 import LoginPopup from './commponents/LoginPopup/LoginPopup'
+import { BrowserRouter } from 'react-router-dom'
+import StoreContextProvider from './context/StoreContext.jsx'
 
 const App = () => {
 
@@ -13,6 +15,8 @@ const App = () => {
 
   return (
     <>
+      <BrowserRouter>
+    <StoreContextProvider>
     {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
       <div className='app'>
         <Navbar setShowLogin={setShowLogin} />
@@ -22,7 +26,8 @@ const App = () => {
           <Route path='/order' element={<PlaceOrder />} />
         </Routes>
       </div>
-      <Footer />
+      <Footer />   </StoreContextProvider>
+  </BrowserRouter>
     </>
   )
 }
